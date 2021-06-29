@@ -2,16 +2,22 @@ import React, { Fragment } from 'react';
 import Header from './components/Header';
 import Formulario from './components/Formulario';
 
+import CategoriesProvider from './context/CategoriesContext'
+import RecipesProvider from './context/RecipesContext';
+
+
 function App() {
   return (
-    <Fragment>
+    <CategoriesProvider>
+      <RecipesProvider>
       <Header/>
       <div className='container mt-5'>
         <div className='row'>
         <Formulario/>
         </div>
       </div>
-    </Fragment>
+      </RecipesProvider>
+    </CategoriesProvider>
   );
 }
 
