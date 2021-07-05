@@ -32,7 +32,7 @@ const Recipe = ({ recipe }) => {
 
     const classes= useStyles();
 
-    const handleOpen = () =>{
+    const handleOpen = () => {
         setOpen(true);
     }
     const handleClose = () => {
@@ -52,15 +52,24 @@ const Recipe = ({ recipe }) => {
                 type='button'
                 className='btn btn-block btn-primary'
                 onClick={() => {
-                    saveIdRecipe(recipe.idDrink)
+                    saveIdRecipe(recipe.idDrink);
                     handleOpen();
                 }}
                 >
                     See Recipe
                 </button>
 
-                <Modal>
-                    <div style={modalStyle} className={classes.paper}></div>
+                <Modal
+                open = {open}
+                onClose={() => {
+                saveIdRecipe(null);
+                handleClose();
+
+                }}
+                >
+                    <div style={modalStyle} className={classes.paper}>
+                    <h1>Desde modal</h1>
+                    </div>
                 </Modal>
                 </div>
 
