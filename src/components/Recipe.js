@@ -40,7 +40,20 @@ const Recipe = ({ recipe }) => {
     }
     //Fetch context values 
     const { recipeinfo, saveIdRecipe, saveRecipe } = useContext(ModalContext);
+    
+    //Show and reset ingredients
 
+    const showIngredients = recipeinfo => {
+        let ingredients = [];
+        for(let i = 1; i < 16; i++){
+            if(recipeinfo[`strIngredient${i}`]){
+                ingredients.push(
+                    <li>{recipeinfo[`strIngredient${i}`] } {recipeinfo[`strMeasure${i}`] }</li>
+                )
+            }
+        } 
+        return ingredients;
+    }
    
 
     return ( 
@@ -74,8 +87,12 @@ const Recipe = ({ recipe }) => {
                     <div style={modalStyle} className={classes.paper}>
                     <h2>{recipeinfo.strDrink}</h2>
                     <h3 className="mt-4">Instructions:</h3>
-                    <p>{recipeinfo.strInstructions}</p>
-                    <img className= 'img-fluid my-4' src={recipeinfo.strDrinkThumb} />
+                    <p>{recipeinfo.strInstructions} </p>
+                    <img className= 'img-fluid my-4' src={recipeinfo.strDrinkThumb} alt={recipeinfo.strDrink}/>
+                    <h3>Ingredients and quantities:</h3>
+                    <ul>
+                        {showIngredients(recipeinfo)}
+                    </ul>
                     </div>
                 </Modal>
                 </div>
